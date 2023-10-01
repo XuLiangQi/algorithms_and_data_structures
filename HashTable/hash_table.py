@@ -43,11 +43,21 @@ class HashTable:
             else:
                 row += 1
 
-t = HashTable(2)
-print(t.table)
-t.add("Apple", 1)
-print(t.table)
-t.add("Banana", 2)
-print(t.table)
-t.delete("Apple")
-print(t.table)
+"""
+Create a unit tester
+"""
+def test():
+    t = HashTable(5)
+    print(t.table)
+    t.add("Apple", 0.67)
+    t.add("Banana", 0.35)
+    t.add("Cherry", 8.99)
+    t.add("Damson", 4.99)
+    t.add("Figs", 3.99)
+    print(t.table)
+    t.find("Banana")
+    t.delete("Damson")
+    t.delete("Figs")
+    print(t.table)
+
+test()
