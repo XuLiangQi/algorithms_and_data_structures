@@ -63,8 +63,8 @@ class LinkedList:
         while current_node.value != None:
             prev_node = current_node
             current_node = current_node.next_node
-            next_node = current_node.next_node
             if (current_node.value == value):
+                next_node = current_node.next_node
                 break
         prev_node.next_node = next_node
         
