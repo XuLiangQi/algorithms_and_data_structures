@@ -5,20 +5,34 @@ class Node:
         self.value = value
 
 class BinaryTree:
-    def __init__(self, value):
+    def __init__(self):
         self.root = None
 
-    def assign_node(self, node, value):
-        new_node = Node(value)
-        if node.value is None:
-            node.value = value
-        elif value > node.value:
-            node.right_node = new_node
+    def assign_node(self, root_node, new_node):
+        if new_node.value > root_node.value:
+            if root_node.right_node is None:
+                root_node.right_node = new_node
+            else:
+                self.assign_node(root_node.right_node, new_node)
+        else:
+            if root_node.left_node is None:
+                root_node.left_node = new_node
+            else:
+                self.assign_node(root_node.left_node, new_node)
 
 
-    def add(self,value):
+    def add(self, value):
         this_node = Node(value)
         if self.root is None:
             self.root = this_node
         else:
-            current_node = self.root
+            self.assign_node(self.root, this_node)
+
+
+
+b = BinaryTree()
+b.add(5)
+b.add(3)
+b.add(7)
+b.add(1)
+b.add(9)
