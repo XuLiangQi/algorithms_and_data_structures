@@ -5,7 +5,7 @@ Node class contains:
                 current node.
 """
 class Node:
-    def __init__(self, value):
+    def __init__(self, value: int):
         self.value = value
         self.next_node = None
 
@@ -16,10 +16,16 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    """
-    Add a new element to this linked list.
-    """
-    def add(self, value):
+    def add(self, value: int):
+        """Add a new element to this linked list.
+        Parameteres:
+        ------------
+            value: The value to be added to the linked list.
+
+        Returns:
+        --------
+            None
+        """
         new_node = Node(value)
         # When the head is empty, assign the new node
         if self.head == None:
@@ -38,10 +44,9 @@ class LinkedList:
             # Assign the next_node to the current_node of the current_node
             current_node.next_node = new_node
 
-    """
-    Print out all nodes in this linked list.
-    """
     def show(self):
+        """Print out all nodes in this linked list.
+        """
         # Start from the head (begining)
         current_node = self.head
         # Loop through and stop when next_node is None
@@ -52,12 +57,19 @@ class LinkedList:
         # Print the last node
         print(current_node.value, " -> None")
     
-    """
-    Remove an element from this linked list.
+    def delete(self, value: int):    
+        """Remove an element from this linked list.
         Assign the previous node's next_node
         to be the next_node of the removed node.
-    """
-    def delete(self, value):
+
+        Parameters:
+        ----------
+            value: Value to be removed from the linked list.
+
+        Returns:
+        --------
+            None
+        """
         # Initiate previous_node (to the current_node)
         #   current_node
         #   next_node (to the current_node)
@@ -81,7 +93,7 @@ A node structure that holdes links to
     and the next node.
 """
 class DoublyNode:
-    def __init__(self, value):
+    def __init__(self, value: int):
         self.value = value
         self.previous_node = None
         self.next_node = None
@@ -133,7 +145,7 @@ class DoublyLinkedList:
     Deleting an element from the doubly
         linked list.
     """
-    def delete(self, value):
+    def delete(self, value: int):
         previous_node = self.head
         current_node = self.head
         next_node = self.head

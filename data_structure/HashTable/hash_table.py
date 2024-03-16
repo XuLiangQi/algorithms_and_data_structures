@@ -4,37 +4,67 @@ class HashTable:
         Each element in this hash table contains 
         an 2D array [key, value]. 
     """
-    def __init__(self, size):
+    def __init__(self, size: int):
         self.size = size
         self.table = [ [] for _ in range (0, self.size)]
 
-    """
-    Add a new element [key, value] to
+    def hash(self, key: str) -> int:
+        """Hash the key value provided while ensuring
+        the resulting index falls within the table range
+        
+        Parameters:
+        ----------
+            key: String name of the value. 
+            
+        Returns:
+        --------
+            The index of the location on hash table.
+        """
+        return hash(key) % self.size
+
+    def add(self, key: str, value: float):
+        """Add a new element [key, value] to
         this hash table.
-    """
-    def add(self, key, value):
-        hashing = hash(key) % self.size
+        Parameters:
+        ----------
+            key: The string name of the value.
+            value: The actual value.
+        Returns:
+        -------
+            None
+        """
+        hashing = self.hash(key)
         single_array = [key, value]
         self.table[hashing].append(single_array)
     
-    """
-    Find an element from this hash
+    def find(self, key: str):
+        """Find an element from this hash
         table by searching its key.
-    """
-    def find(self, key):
-        hashing = hash(key) % self.size
+        Parameters:
+        ----------
+            key: The string name of the value.
+        Returns:
+        --------
+            None
+        """
+        hashing = self.hash(key)
         found_array = self.table[hashing]
         for row in found_array:
              if row[0] == key:
                  print(row[0], row[1])
     
-    """
-    Remove an element from this
+    def delete(self, key: str):
+        """Remove an element from this
         hash table by searching
         its key.
-    """
-    def delete(self, key):
-        hashing = hash(key) % self.size
+        Parameters:
+        ----------
+            key: The string name of the value.
+        Returns:
+        --------
+            None
+        """
+        hashing = self.hash(key)
         found_array = self.table[hashing]
         row = 0
         while(row < len(found_array)):
@@ -43,10 +73,8 @@ class HashTable:
             else:
                 row += 1
 
-"""
-Create a unit tester
-"""
-def test():
+
+if __name__ == "__main__":
     t = HashTable(5)
     print(t.table)
     t.add("Apple", 0.67)
@@ -59,5 +87,3 @@ def test():
     t.delete("Damson")
     t.delete("Figs")
     print(t.table)
-
-test()
