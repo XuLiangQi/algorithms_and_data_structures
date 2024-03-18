@@ -6,11 +6,14 @@ class HashTable:
     """
     def __init__(self, size: int):
         self.size = size
-        self.table = [ [] for _ in range (0, self.size)]
+        self.table = [ [] for _ in range (0, self.size * 2)]    # Rule of thumbs is to make a list 
+                                                                # with twice the size of the values
 
     def hash(self, key: str) -> int:
         """Hash the key value provided while ensuring
-        the resulting index falls within the table range
+        the resulting index falls within the table range.
+        The modulo of the hased key will be used to ensure
+        the resulting index is within the range of the table
         
         Parameters:
         ----------
@@ -18,17 +21,20 @@ class HashTable:
             
         Returns:
         --------
-            The index of the location on hash table.
+            The modulo result of the hashed keys. This will
+            be the index of the value on the hash table
         """
         return hash(key) % self.size
 
     def add(self, key: str, value: float):
         """Add a new element [key, value] to
         this hash table.
+
         Parameters:
         ----------
             key: The string name of the value.
             value: The actual value.
+
         Returns:
         -------
             None
@@ -40,9 +46,11 @@ class HashTable:
     def find(self, key: str):
         """Find an element from this hash
         table by searching its key.
+
         Parameters:
         ----------
             key: The string name of the value.
+
         Returns:
         --------
             None
@@ -55,11 +63,12 @@ class HashTable:
     
     def delete(self, key: str):
         """Remove an element from this
-        hash table by searching
-        its key.
+        hash table by searching its key.
+
         Parameters:
         ----------
             key: The string name of the value.
+
         Returns:
         --------
             None
